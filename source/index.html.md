@@ -1,15 +1,12 @@
 ---
-title: API Reference
+title: Openfax CloudFax API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
-  - shell
-  - ruby
-  - python
-  - javascript
+  - PHP
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
+  - <a href='https://openfax.com/signup'>Sign Up for an Account</a>
+  - <a href='https://portal.openfax.com'>Portal Login</a>
 
 includes:
   - errors
@@ -17,15 +14,318 @@ includes:
 search: true
 ---
 
-# Introduction
+# Getting Started
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+The Openfax Cloud Fax API is designed to allow developers quick and easy access to global facsimile services.  With Openfax's fax APIs you can:
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+* Send a single fax document to a single location
+* Send a single fax document to many locations (fax broadcast)
+* Send a customized fax document to many locations based on a Microsoft DOCx template (mail merge broadcast)
+* Configure inbound fax numbers
+* Receive a fax to your cloud storage, website or url post back
 
-This example API documentation page was created with [Slate](https://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
+##Account & API Key
 
-# Authentication
+**To get Started** you'll need to [sign-up for an account](https://openfax.com/signup).
+
+* An account is required to use the API.
+* An account number is required to use the API.
+* An API key is required to use the API.
+
+Once you have an established account you will be able to login to the [portal](https://portal.openfax.com/) to obtain your API key from your account settings.
+
+<aside class="notice">
+Contact us after you have completed your registration for free developer trial account credits.
+</aside>
+## Ways to get help
+1. By Phone at 1-866-OPENFAX(673-6329) or +1.847.221.1979
+2. Chat at [openfax.com](https://openfax.com/)
+3. Email [broadcast@openfax.com](mailto:broadcast@openfax.com)
+4. Slack by invite, email us at [broadcast@openfax.com](mailto:broadcast@openfax.com)
+5. Skype by invite, email us your skype name to [broadcast@openfax.com](mailto:broadcast@openfax.com)
+
+# Sending Faxes
+
+Overview
+
+Rates
+Funding
+
+##Send a Single Fax
+```php
+
+// Sending a single outbound fax request
+
+<?php
+
+$pdf = "/home/docs/mydoc.pdf";     // Fax Document PDF location
+
+$pdf_encode = base64_encode(file_get_contents($pdf));
+
+$account_id = ‘#######’;           // Your Account ID
+$apikey = 'Your API Key';          //API Key for the Account ID
+
+$faxnum = '15555551212’;           // Destination Fax Number US & Canada Dialing Only
+$to_header = 'My Customer';        // Fax To Header Value
+$from_header = 'My Company"';      // Fax From Header Value 
+$paper_size = '0';                 // Paper size 
+                                   // 0 - US Letter   8.5"x11"
+                                   // 1 - US Legal  8.5"X14"
+                                   // 2 - A4  8.27" × 11.69"
+
+$fax_res = '0';                    // Fax Resolution:
+                                   // 0 - Standard Resolution
+                                   // 1 - Fine Resolution
+
+
+$priority = 'Normal';              //Priority value for the fax:
+                                   // Low - Slower priorty
+                                   // Normal - Faster priority
+
+$post = array(
+
+'AccountID'      => $account_id,
+'FaxNumber'      => $faxnum,
+'toHeader'       => $to_header,
+'fromHeader'     => $from_header,
+'faxResolution'  => $fax_res,
+'APIKey'         => $apikey,
+'PDF_encode'     => $pdf_encode,
+'paperSize'     => $paper_size,
+'Priority' => $priority  
+);
+
+$ch   = curl_init();
+$url  = 'https://api.openfax.com/faxSendSubmit.php';
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
+$data1 = curl_exec($ch);
+print_r($data1);
+?>
+``` 
+###HTTPS Request
+`POST: https://api.openfax.com/faxSendSubmit.php`
+
+Sending a single fax allows you to provide one fax number and one pdf file for transmission. Openfax will attempt to deliver the fax conducting up to 3 redial attempts with a 4-minute wait duration between each redial.
+
+After your fax has been delivered or all retries have been exhausted Openfax will provide reporting details for the fax using a variety of options:
+
+
+* Automatic Webhook Post Back
+* Query by OutTransID
+* Query by DateRange
+
+
+<aside class="note">
+Note: All parameters bold denotes required value.
+</aside>
+### Submission Parameters
+Name | Type | Len | Desc | Example
+-------------- | -------------- | --------------  | --------------  | --------------
+**AccountID** | Int | 9 | Openfax Account ID | 123456789
+**APIKey** | VarChar | 255 | Set in portal account settings | IEYRtw2cd8aGa54
+**FaxNumber** | BigInt | 20 | 11-digit North American Number | 15555551212
+toHeader | VarChar | 15 | Appears in the To field of fax the header. | My Customer
+frHeader | VarChar | 15 | Appears in the Fr field of fax the header. | My Company
+**paperSize** | Int | 1 | Specifies input PDF paper size: <br/> 0 - US Letter (8.5 x 11.0 in / 216 x 279 mm) </br>1 - US Legal (8.5 x 14.0 in /216 x 356 mm) <br/> 2 - A4 (8.5 x 11.0 in / 216 x 279 mm) | 0
+**faxResolution** | Int | 1 | Fax resolution used for transmission:<br/>0 - Standard Resolution (204 x 98 dpi) <br/>1 - Fine Resolution (204 x 196 dpi)<br/><br/> *Note: Fine mode may increase the documents transmission time. Depending on your pricing arrangement transmission times may impact the cost of the fax transmission.* | 0
+**Priority** | VarChar | 6 | Transactional faxing will always receive a higher priority on the Openfax network over other fax broadcast traffic.  This affects how quickly your fax will be attempted in relation to other fax traffic on the network. <br/><br/>It is recommended to always use “Normal”, though if your fax is less urgent you may Specify “Low” to give Normal transactional faxes preference over those specific with a Low priority.  It is not possible to change a transactional fax priority once it has been submitted.<br/><br/> Values are case sensitive. <br/>Normal - High transactional priority <br/>Low - Lower transactional priority, other transactions will receive preference within the queue. | Normal
+**PDF_encode** | Base64 | 50MB | The PDF file is limited to 50MB max and must be Base64 encoded. | n/a
+
+
+<aside class="warning">
+You must use the proper paper size for your fax destination's country. Using an improper paper size may cause your fax to fail.
+</aside>
+```json
+{"Response":"Success","OutTransID":"INT"}
+
+{"Response":"Failed"}
+
+{"Response":"InvalidAuthentication"}
+
+{"Response":"AccountInactive"}
+
+{"Response":"RestrictedFaxNumber"}
+
+{"Response":"InvalidFaxNumberLength"}
+
+{"Response":"InvalidFaxResolution"}
+
+{"Response":"InvalidPapersize"}
+
+{"Response":"InvalidPriority"}
+
+```
+
+### Response Parameters
+Reponse |  Condition 
+-------------- | --------------
+**Success** | Returns the OutTransID for the submitted outbound fax transaction.
+Failed | The Transaction request has failed.
+InvalidAuthentication |  The account number or API key provided is invalid.
+AccountInactive |  The account has been depleted of funds or has been deactivated. Check balance, apply payment or contact support.
+Restricted Number | The attempted number is restricted from dialing either due to the phone number owner’s request, compliance list or another reason.  Contact customer support for details if required.
+InvalidFaxNumberLength | The FaxNumber is not valid for dialing.   <br/>North American dialing 1NPANXXXXX is required.   <br/>International dialing must not include + and be contain the country code and local number such as 861069445000.
+InvalidFaxResolution | Specified faxResolution value is invalid. <br/>Value must be 0 for standard or 1 for fine resolution.
+InvalidPaperSize | Specified paperSize value is invalid.   <br/>Value must be 0 - US Letter, 1 - US Legal  or 2 - A4
+InvalidPriority | Specified Priority value is invalid.  <br/> Values are case sensitive, *Normal* or *Low*.
+##Send a Standard Broadcast
+##Send a Mail Merge Broadcast
+##International Dialing
+
+
+# Fax Status & Reporting
+## Acccount Balance
+
+```php
+<?php
+
+$account_id = your_account_id;
+$apikey = 'your_api_key';
+$post = array(
+
+'AccountID' => $account_id,
+'APIKey' => $apikey
+
+);
+
+$ch   = curl_init();
+$url  = 'https://api.openfax.com/getAvailableCredit.php';
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
+$data1 = curl_exec($ch);
+print_r($data1);
+?>
+
+```
+
+Get your real-time account credit balance.
+HTTPS POST:
+`https://api.openfax.com/getAvailableCredit.php`
+### Submission Parameters
+
+Name | Type | Len | Desc | Example
+-------------- | -------------- | --------------  | --------------  | --------------
+**AccountID** | Int | 9 | Openfax Account ID | 123456789
+**APIKey** | VarChar | 255 | Set in portal account settings | IEYRtw2cd8aGa54
+
+```json
+[{"AvailableCredit":8956.6637749994}]
+```
+### Response Parameters
+
+Name | Type | Desc
+-------------- | -------------- | -------------- 
+AccountBalance | BigInt | Account Balance |
+
+## Status Codes
+### LastStatus
+The last status code is provided for the latest result of the fax attempt.  If the report detail is recieved by webhook postback then the transaction is finalized.  When requesting real-time report data the transaction may still have available redials.  The LastStatus is the result for the individal HistortOutTransID associated to the OutTransID fax request.
+
+Code |  Description | Redial | Explaination 
+-------------- | -------------- | -------------- | --------------
+-1 | Recieved | No | The fax request has been received and is in processing.
+0 | Successful | No | The fax was delivered.
+1 | No Answer | Yes | There was no answer when placing the call.
+2 | Busy | Yes | The line ring response was busy.
+3 | Not Fax | No | A fax answer was not detected.
+4 | All Circuits Busy | Yes | Carrier replied all routes busy.
+5 | Bad Number | No | The number is not a valid telephone number.
+6 | Call Disconnected | Yes | The call was prematurely disconnected, possible voice answer.
+7 | Unkown / Other | Yes | The network did not receive a PAGE OK reponse, possibly not a fax or line noise or not a fax.
+8 | Doc Conversion Failed | No | The document could not be converted.
+9 | Credit Check Failed | No | There is insufficient credit to process the fax.
+
+### CurrentState
+Code |  Description 
+-------------- | -------------- 
+0 | Received
+1 | Document Rendering
+2 | Checking Credit
+3 | On Outbound Table / Waiting for queue space
+4 | In Outbound Queue / In queue for node
+5 | At Fax Node / Fax dialing
+6 | Reporting Engine
+7 | Waiting for Redial
+8 | Finalized / Fax Successful
+9 | Finalized / Fax Failed
+10 | Finalized / Fax Failed due to document conversion
+11 | Credit Hold
+12 | Retry Eligible
+13 | Canceled
+
+## Single Fax Webhook Post Back
+```php
+<?php 
+
+$outtransactionid = $_REQUEST['OutTransID'];  //Transaction ID for this fax
+$accountid = $_REQUEST['AccountID'];          //Account Number used for this request
+$receivedfrom = $_REQUEST['From'];            //Fax Fr Header
+$receivedto = $_REQUEST['To'];                //Fax To Header
+$pages = $_REQUEST['PagesSent'];              //Number of pages sent
+$callduration = $_REQUEST['CallDuration'];    //Total transmission time of fax in seconds
+$status = $_REQUEST['LastStatus'];            //Deliver status code of the fax
+$cost = $_REQUEST['RealCost'];                //Cost for this fax
+
+print_r(json_encode($_REQUEST));  //prints JSON formatted response
+
+?>
+
+```
+Configure Webhook postpack is the easiest way to get notified of your fax requests result.
+
+###Enable Webhook Postback
+1. Login to your portal account
+2. Select settings
+3. Enable Post Back for Outbound Faxes
+4. Provide your public postback 
+
+Example:
+`https://your-public-url/path-to-script/getPostBack.php`
+
+
+
+
+
+##Single Fax Outbound By Date
+```php
+<?php
+
+$account_id = your_account_id;
+$apikey = 'your_api_key';
+$from_date = '2016-05-27';
+$to_date = '2016-05-31';
+$detailtype = 1;
+$lasthistoryid = 936600;
+$limit = 5;
+
+$post = array(
+
+'AccountID' => $account_id,
+'APIKey' => $apikey,
+'FromDate' => $from_date,
+'ToDate' =>  $to_date,
+'DetailType' => $detailtype,
+'LastHistoryID' => $lasthistoryid,
+'Limit' => $limit
+
+);
+
+$ch   = curl_init();
+$url  = 'https://api.openfax.com/outboundDetailsbyDate.php';
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
+$data1 = curl_exec($ch);
+print_r($data1);
+
+?>
+```
 
 > To authorize, use this code:
 

@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>API Reference</title>
+    <title>Openfax CloudFax API Reference</title>
 
     <style>
       .highlight table td { padding: 5px; }
@@ -201,7 +201,7 @@
       <script src="javascripts/all.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;,&quot;ruby&quot;,&quot;python&quot;,&quot;javascript&quot;]">
+  <body class="index" data-languages="[&quot;PHP&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -211,23 +211,59 @@
     <div class="toc-wrapper">
       <img src="images/logo.png" class="logo" alt="Logo" />
         <div class="lang-selector">
-              <a href="#" data-language-name="shell">shell</a>
-              <a href="#" data-language-name="ruby">ruby</a>
-              <a href="#" data-language-name="python">python</a>
-              <a href="#" data-language-name="javascript">javascript</a>
+              <a href="#" data-language-name="PHP">PHP</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
         </div>
         <ul class="search-results"></ul>
       <div id="toc" class="toc-list-h1">
-          <li>
-            <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
+                  <li>
+            <a href="#getting-started" class="toc-h1 toc-link" data-title="Getting Started">Getting Started</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#account-amp-api-key" class="toc-h2 toc-link" data-title="Getting Started">Account &amp; API Key</a>
+                  </li>
+                  <li>
+                    <a href="#ways-to-get-help" class="toc-h2 toc-link" data-title="Getting Started">Ways to get help</a>
+                  </li>
+              </ul>
           </li>
-          <li>
-            <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
+                  <li>
+            <a href="#sending-faxes" class="toc-h1 toc-link" data-title="Sending Faxes">Sending Faxes</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#send-a-single-fax" class="toc-h2 toc-link" data-title="Sending Faxes">Send a Single Fax</a>
+                  </li>
+                  <li>
+                    <a href="#send-a-standard-broadcast" class="toc-h2 toc-link" data-title="Sending Faxes">Send a Standard Broadcast</a>
+                  </li>
+                  <li>
+                    <a href="#send-a-mail-merge-broadcast" class="toc-h2 toc-link" data-title="Sending Faxes">Send a Mail Merge Broadcast</a>
+                  </li>
+                  <li>
+                    <a href="#international-dialing" class="toc-h2 toc-link" data-title="Sending Faxes">International Dialing</a>
+                  </li>
+              </ul>
           </li>
-          <li>
+                  <li>
+            <a href="#fax-status-amp-reporting" class="toc-h1 toc-link" data-title="Fax Status &amp; Reporting">Fax Status &amp; Reporting</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#acccount-balance" class="toc-h2 toc-link" data-title="Fax Status &amp; Reporting">Acccount Balance</a>
+                  </li>
+                  <li>
+                    <a href="#status-codes" class="toc-h2 toc-link" data-title="Fax Status &amp; Reporting">Status Codes</a>
+                  </li>
+                  <li>
+                    <a href="#single-fax-webhook-post-back" class="toc-h2 toc-link" data-title="Fax Status &amp; Reporting">Single Fax Webhook Post Back</a>
+                  </li>
+                  <li>
+                    <a href="#single-fax-outbound-by-date" class="toc-h2 toc-link" data-title="Fax Status &amp; Reporting">Single Fax Outbound By Date</a>
+                  </li>
+              </ul>
+          </li>
+                  <li>
             <a href="#kittens" class="toc-h1 toc-link" data-title="Kittens">Kittens</a>
               <ul class="toc-list-h2">
                   <li>
@@ -241,25 +277,542 @@
                   </li>
               </ul>
           </li>
-          <li>
+                  <li>
             <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
           </li>
+
       </div>
         <ul class="toc-footer">
-            <li><a href='#'>Sign Up for a Developer Key</a></li>
-            <li><a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a></li>
+            <li><a href='https://openfax.com/signup'>Sign Up for an Account</a></li>
+            <li><a href='https://portal.openfax.com'>Portal Login</a></li>
+<li>
+<script type="text/javascript" src="https://cdn.statuspage.io/se-v2.js"></script>
+<script>
+  var sp = new StatusPage.page({ page : '753mfgjdhqvf' });
+  sp.status({
+    success : function(data) {
+      console.log(data.status.indicator);
+    }
+  });
+</script></li>
+
         </ul>
+
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id='introduction'>Introduction</h1>
-<p>Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
+        <h1 id='getting-started'>Getting Started</h1>
+<p>The Openfax Cloud Fax API is designed to allow developers quick and easy access to global facsimile services.  With Openfax&#39;s fax APIs you can:</p>
 
-<p>We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
+<ul>
+<li>Send a single fax document to a single location</li>
+<li>Send a single fax document to many locations (fax broadcast)</li>
+<li>Send a customized fax document to many locations based on a Microsoft DOCx template (mail merge broadcast)</li>
+<li>Configure inbound fax numbers</li>
+<li>Receive a fax to your cloud storage, website or url post back</li>
+</ul>
+<h2 id='account-amp-api-key'>Account &amp; API Key</h2>
+<p><strong>To get Started</strong> you&#39;ll need to <a href="https://openfax.com/signup">sign-up for an account</a>.</p>
 
-<p>This example API documentation page was created with <a href="https://github.com/tripit/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&#39;s documentation.</p>
-<h1 id='authentication'>Authentication</h1>
+<ul>
+<li>An account is required to use the API.</li>
+<li>An account number is required to use the API.</li>
+<li>An API key is required to use the API.</li>
+</ul>
+
+<p>Once you have an established account you will be able to login to the <a href="https://portal.openfax.com/">portal</a> to obtain your API key from your account settings.</p>
+
+<aside class="notice">
+Contact us after you have completed your registration for free developer trial account credits.
+</aside>
+<h2 id='ways-to-get-help'>Ways to get help</h2>
+<ol>
+<li>By Phone at 1-866-OPENFAX(673-6329) or +1.847.221.1979</li>
+<li>Chat at <a href="https://openfax.com/">openfax.com</a></li>
+<li>Email <a href="mailto:broadcast@openfax.com">broadcast@openfax.com</a></li>
+<li>Slack by invite, email us at <a href="mailto:broadcast@openfax.com">broadcast@openfax.com</a></li>
+<li>Skype by invite, email us your skype name to <a href="mailto:broadcast@openfax.com">broadcast@openfax.com</a></li>
+</ol>
+<h1 id='sending-faxes'>Sending Faxes</h1>
+<p>Overview</p>
+
+<p>Rates
+Funding</p>
+<h2 id='send-a-single-fax'>Send a Single Fax</h2><pre class="highlight php tab-php"><code>
+// Sending a single outbound fax request
+
+<span class="cp">&lt;?php</span>
+
+<span class="nv">$pdf</span> <span class="o">=</span> <span class="s2">"/home/docs/mydoc.pdf"</span><span class="p">;</span>     <span class="c1">// Fax Document PDF location
+</span>
+<span class="nv">$pdf_encode</span> <span class="o">=</span> <span class="nb">base64_encode</span><span class="p">(</span><span class="nb">file_get_contents</span><span class="p">(</span><span class="nv">$pdf</span><span class="p">));</span>
+
+<span class="nv">$account_id</span> <span class="o">=</span> <span class="err">‘</span><span class="c1">#######’;           // Your Account ID
+</span><span class="nv">$apikey</span> <span class="o">=</span> <span class="s1">'Your API Key'</span><span class="p">;</span>          <span class="c1">//API Key for the Account ID
+</span>
+<span class="nv">$faxnum</span> <span class="o">=</span> <span class="s1">'15555551212’;           // Destination Fax Number US &amp; Canada Dialing Only
+$to_header = '</span><span class="nx">My</span> <span class="nx">Customer</span><span class="s1">';        // Fax To Header Value
+$from_header = '</span><span class="nx">My</span> <span class="nx">Company</span><span class="s2">"';      // Fax From Header Value 
+</span><span class="nv">$paper_size</span><span class="s2"> = '0';                 // Paper size 
+                                   // 0 - US Letter   8.5"</span><span class="nx">x11</span><span class="s2">"
+                                   // 1 - US Legal  8.5"</span><span class="nx">X14</span><span class="s2">"
+                                   // 2 - A4  8.27"</span> <span class="err">×</span> <span class="mf">11.69</span><span class="s2">"
+
+</span><span class="nv">$fax_res</span><span class="s2"> = '0';                    // Fax Resolution:
+                                   // 0 - Standard Resolution
+                                   // 1 - Fine Resolution
+
+
+</span><span class="nv">$priority</span><span class="s2"> = 'Normal';              //Priority value for the fax:
+                                   // Low - Slower priorty
+                                   // Normal - Faster priority
+
+</span><span class="nv">$post</span><span class="s2"> = array(
+
+'AccountID'      =&gt; </span><span class="nv">$account_id</span><span class="s2">,
+'FaxNumber'      =&gt; </span><span class="nv">$faxnum</span><span class="s2">,
+'toHeader'       =&gt; </span><span class="nv">$to_header</span><span class="s2">,
+'fromHeader'     =&gt; </span><span class="nv">$from_header</span><span class="s2">,
+'faxResolution'  =&gt; </span><span class="nv">$fax_res</span><span class="s2">,
+'APIKey'         =&gt; </span><span class="nv">$apikey</span><span class="s2">,
+'PDF_encode'     =&gt; </span><span class="nv">$pdf_encode</span><span class="s2">,
+'paperSize'     =&gt; </span><span class="nv">$paper_size</span><span class="s2">,
+'Priority' =&gt; </span><span class="nv">$priority</span><span class="s2">  
+);
+
+</span><span class="nv">$ch</span><span class="s2">   = curl_init();
+</span><span class="nv">$url</span><span class="s2">  = 'https://api.openfax.com/faxSendSubmit.php';
+curl_setopt(</span><span class="nv">$ch</span><span class="s2">, CURLOPT_URL, </span><span class="nv">$url</span><span class="s2">);
+curl_setopt(</span><span class="nv">$ch</span><span class="s2">, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt(</span><span class="nv">$ch</span><span class="s2">, CURLOPT_POST, true);
+curl_setopt(</span><span class="nv">$ch</span><span class="s2">, CURLOPT_POSTFIELDS, </span><span class="nv">$post</span><span class="s2">);
+</span><span class="nv">$data1</span><span class="s2"> = curl_exec(</span><span class="nv">$ch</span><span class="s2">);
+print_r(</span><span class="nv">$data1</span><span class="s2">);
+?&gt;
+</span></code></pre><h3 id='https-request'>HTTPS Request</h3>
+<p><code>POST: https://api.openfax.com/faxSendSubmit.php</code></p>
+
+<p>Sending a single fax allows you to provide one fax number and one pdf file for transmission. Openfax will attempt to deliver the fax conducting up to 3 redial attempts with a 4-minute wait duration between each redial.</p>
+
+<p>After your fax has been delivered or all retries have been exhausted Openfax will provide reporting details for the fax using a variety of options:</p>
+
+<ul>
+<li>Automatic Webhook Post Back</li>
+<li>Query by OutTransID</li>
+<li>Query by DateRange</li>
+</ul>
+
+<aside class="note">
+Note: All parameters bold denotes required value.
+</aside>
+<h3 id='submission-parameters'>Submission Parameters</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Len</th>
+<th>Desc</th>
+<th>Example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>AccountID</strong></td>
+<td>Int</td>
+<td>9</td>
+<td>Openfax Account ID</td>
+<td>123456789</td>
+</tr>
+<tr>
+<td><strong>APIKey</strong></td>
+<td>VarChar</td>
+<td>255</td>
+<td>Set in portal account settings</td>
+<td>IEYRtw2cd8aGa54</td>
+</tr>
+<tr>
+<td><strong>FaxNumber</strong></td>
+<td>BigInt</td>
+<td>20</td>
+<td>11-digit North American Number</td>
+<td>15555551212</td>
+</tr>
+<tr>
+<td>toHeader</td>
+<td>VarChar</td>
+<td>15</td>
+<td>Appears in the To field of fax the header.</td>
+<td>My Customer</td>
+</tr>
+<tr>
+<td>frHeader</td>
+<td>VarChar</td>
+<td>15</td>
+<td>Appears in the Fr field of fax the header.</td>
+<td>My Company</td>
+</tr>
+<tr>
+<td><strong>paperSize</strong></td>
+<td>Int</td>
+<td>1</td>
+<td>Specifies input PDF paper size: <br/> 0 - US Letter (8.5 x 11.0 in / 216 x 279 mm) </br>1 - US Legal (8.5 x 14.0 in /216 x 356 mm) <br/> 2 - A4 (8.5 x 11.0 in / 216 x 279 mm)</td>
+<td>0</td>
+</tr>
+<tr>
+<td><strong>faxResolution</strong></td>
+<td>Int</td>
+<td>1</td>
+<td>Fax resolution used for transmission:<br/>0 - Standard Resolution (204 x 98 dpi) <br/>1 - Fine Resolution (204 x 196 dpi)<br/><br/> <em>Note: Fine mode may increase the documents transmission time. Depending on your pricing arrangement transmission times may impact the cost of the fax transmission.</em></td>
+<td>0</td>
+</tr>
+<tr>
+<td><strong>Priority</strong></td>
+<td>VarChar</td>
+<td>6</td>
+<td>Transactional faxing will always receive a higher priority on the Openfax network over other fax broadcast traffic.  This affects how quickly your fax will be attempted in relation to other fax traffic on the network. <br/><br/>It is recommended to always use “Normal”, though if your fax is less urgent you may Specify “Low” to give Normal transactional faxes preference over those specific with a Low priority.  It is not possible to change a transactional fax priority once it has been submitted.<br/><br/> Values are case sensitive. <br/>Normal - High transactional priority <br/>Low - Lower transactional priority, other transactions will receive preference within the queue.</td>
+<td>Normal</td>
+</tr>
+<tr>
+<td><strong>PDF_encode</strong></td>
+<td>Base64</td>
+<td>50MB</td>
+<td>The PDF file is limited to 50MB max and must be Base64 encoded.</td>
+<td>n/a</td>
+</tr>
+</tbody></table>
+
+<aside class="warning">
+You must use the proper paper size for your fax destination's country. Using an improper paper size may cause your fax to fail.
+</aside>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="s2">"Response"</span><span class="p">:</span><span class="s2">"Success"</span><span class="p">,</span><span class="s2">"OutTransID"</span><span class="p">:</span><span class="s2">"INT"</span><span class="p">}</span><span class="w">
+
+</span><span class="p">{</span><span class="s2">"Response"</span><span class="p">:</span><span class="s2">"Failed"</span><span class="p">}</span><span class="w">
+
+</span><span class="p">{</span><span class="s2">"Response"</span><span class="p">:</span><span class="s2">"InvalidAuthentication"</span><span class="p">}</span><span class="w">
+
+</span><span class="p">{</span><span class="s2">"Response"</span><span class="p">:</span><span class="s2">"AccountInactive"</span><span class="p">}</span><span class="w">
+
+</span><span class="p">{</span><span class="s2">"Response"</span><span class="p">:</span><span class="s2">"RestrictedFaxNumber"</span><span class="p">}</span><span class="w">
+
+</span><span class="p">{</span><span class="s2">"Response"</span><span class="p">:</span><span class="s2">"InvalidFaxNumberLength"</span><span class="p">}</span><span class="w">
+
+</span><span class="p">{</span><span class="s2">"Response"</span><span class="p">:</span><span class="s2">"InvalidFaxResolution"</span><span class="p">}</span><span class="w">
+
+</span><span class="p">{</span><span class="s2">"Response"</span><span class="p">:</span><span class="s2">"InvalidPapersize"</span><span class="p">}</span><span class="w">
+
+</span><span class="p">{</span><span class="s2">"Response"</span><span class="p">:</span><span class="s2">"InvalidPriority"</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='response-parameters'>Response Parameters</h3>
+<table><thead>
+<tr>
+<th>Reponse</th>
+<th>Condition</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>Success</strong></td>
+<td>Returns the OutTransID for the submitted outbound fax transaction.</td>
+</tr>
+<tr>
+<td>Failed</td>
+<td>The Transaction request has failed.</td>
+</tr>
+<tr>
+<td>InvalidAuthentication</td>
+<td>The account number or API key provided is invalid.</td>
+</tr>
+<tr>
+<td>AccountInactive</td>
+<td>The account has been depleted of funds or has been deactivated. Check balance, apply payment or contact support.</td>
+</tr>
+<tr>
+<td>Restricted Number</td>
+<td>The attempted number is restricted from dialing either due to the phone number owner’s request, compliance list or another reason.  Contact customer support for details if required.</td>
+</tr>
+<tr>
+<td>InvalidFaxNumberLength</td>
+<td>The FaxNumber is not valid for dialing.   <br/>North American dialing 1NPANXXXXX is required.   <br/>International dialing must not include + and be contain the country code and local number such as 861069445000.</td>
+</tr>
+<tr>
+<td>InvalidFaxResolution</td>
+<td>Specified faxResolution value is invalid. <br/>Value must be 0 for standard or 1 for fine resolution.</td>
+</tr>
+<tr>
+<td>InvalidPaperSize</td>
+<td>Specified paperSize value is invalid.   <br/>Value must be 0 - US Letter, 1 - US Legal  or 2 - A4</td>
+</tr>
+<tr>
+<td>InvalidPriority</td>
+<td>Specified Priority value is invalid.  <br/> Values are case sensitive, <em>Normal</em> or <em>Low</em>.</td>
+</tr>
+</tbody></table>
+<h2 id='send-a-standard-broadcast'>Send a Standard Broadcast</h2><h2 id='send-a-mail-merge-broadcast'>Send a Mail Merge Broadcast</h2><h2 id='international-dialing'>International Dialing</h2><h1 id='fax-status-amp-reporting'>Fax Status &amp; Reporting</h1><h2 id='acccount-balance'>Acccount Balance</h2><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+
+<span class="nv">$account_id</span> <span class="o">=</span> <span class="nx">your_account_id</span><span class="p">;</span>
+<span class="nv">$apikey</span> <span class="o">=</span> <span class="s1">'your_api_key'</span><span class="p">;</span>
+<span class="nv">$post</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+
+<span class="s1">'AccountID'</span> <span class="o">=&gt;</span> <span class="nv">$account_id</span><span class="p">,</span>
+<span class="s1">'APIKey'</span> <span class="o">=&gt;</span> <span class="nv">$apikey</span>
+
+<span class="p">);</span>
+
+<span class="nv">$ch</span>   <span class="o">=</span> <span class="nb">curl_init</span><span class="p">();</span>
+<span class="nv">$url</span>  <span class="o">=</span> <span class="s1">'https://api.openfax.com/getAvailableCredit.php'</span><span class="p">;</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="nx">CURLOPT_URL</span><span class="p">,</span> <span class="nv">$url</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="nx">CURLOPT_RETURNTRANSFER</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="nx">CURLOPT_POST</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="nx">CURLOPT_POSTFIELDS</span><span class="p">,</span> <span class="nv">$post</span><span class="p">);</span>
+<span class="nv">$data1</span> <span class="o">=</span> <span class="nb">curl_exec</span><span class="p">(</span><span class="nv">$ch</span><span class="p">);</span>
+<span class="nb">print_r</span><span class="p">(</span><span class="nv">$data1</span><span class="p">);</span>
+<span class="cp">?&gt;</span>
+
+</code></pre>
+<p>Get your real-time account credit balance.
+HTTPS POST:
+<code>https://api.openfax.com/getAvailableCredit.php</code></p>
+<h3 id='submission-parameters-2'>Submission Parameters</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Len</th>
+<th>Desc</th>
+<th>Example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>AccountID</strong></td>
+<td>Int</td>
+<td>9</td>
+<td>Openfax Account ID</td>
+<td>123456789</td>
+</tr>
+<tr>
+<td><strong>APIKey</strong></td>
+<td>VarChar</td>
+<td>255</td>
+<td>Set in portal account settings</td>
+<td>IEYRtw2cd8aGa54</td>
+</tr>
+</tbody></table>
+<pre class="highlight json tab-json"><code><span class="p">[{</span><span class="s2">"AvailableCredit"</span><span class="p">:</span><span class="mf">8956.6637749994</span><span class="p">}]</span><span class="w">
+</span></code></pre><h3 id='response-parameters-2'>Response Parameters</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Desc</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>AccountBalance</td>
+<td>BigInt</td>
+<td>Account Balance</td>
+</tr>
+</tbody></table>
+<h2 id='status-codes'>Status Codes</h2><h3 id='laststatus'>LastStatus</h3>
+<p>The last status code is provided for the latest result of the fax attempt.  If the report detail is recieved by webhook postback then the transaction is finalized.  When requesting real-time report data the transaction may still have available redials.  The LastStatus is the result for the individal HistortOutTransID associated to the OutTransID fax request.</p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+<th>Redial</th>
+<th>Explaination</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>-1</td>
+<td>Recieved</td>
+<td>No</td>
+<td>The fax request has been received and is in processing.</td>
+</tr>
+<tr>
+<td>0</td>
+<td>Successful</td>
+<td>No</td>
+<td>The fax was delivered.</td>
+</tr>
+<tr>
+<td>1</td>
+<td>No Answer</td>
+<td>Yes</td>
+<td>There was no answer when placing the call.</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Busy</td>
+<td>Yes</td>
+<td>The line ring response was busy.</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Not Fax</td>
+<td>No</td>
+<td>A fax answer was not detected.</td>
+</tr>
+<tr>
+<td>4</td>
+<td>All Circuits Busy</td>
+<td>Yes</td>
+<td>Carrier replied all routes busy.</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Bad Number</td>
+<td>No</td>
+<td>The number is not a valid telephone number.</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Call Disconnected</td>
+<td>Yes</td>
+<td>The call was prematurely disconnected, possible voice answer.</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Unkown / Other</td>
+<td>Yes</td>
+<td>The network did not receive a PAGE OK reponse, possibly not a fax or line noise or not a fax.</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Doc Conversion Failed</td>
+<td>No</td>
+<td>The document could not be converted.</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Credit Check Failed</td>
+<td>No</td>
+<td>There is insufficient credit to process the fax.</td>
+</tr>
+</tbody></table>
+<h3 id='currentstate'>CurrentState</h3>
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>0</td>
+<td>Received</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Document Rendering</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Checking Credit</td>
+</tr>
+<tr>
+<td>3</td>
+<td>On Outbound Table / Waiting for queue space</td>
+</tr>
+<tr>
+<td>4</td>
+<td>In Outbound Queue / In queue for node</td>
+</tr>
+<tr>
+<td>5</td>
+<td>At Fax Node / Fax dialing</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Reporting Engine</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Waiting for Redial</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Finalized / Fax Successful</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Finalized / Fax Failed</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Finalized / Fax Failed due to document conversion</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Credit Hold</td>
+</tr>
+<tr>
+<td>12</td>
+<td>Retry Eligible</td>
+</tr>
+<tr>
+<td>13</td>
+<td>Canceled</td>
+</tr>
+</tbody></table>
+<h2 id='single-fax-webhook-post-back'>Single Fax Webhook Post Back</h2><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span> 
+
+<span class="nv">$outtransactionid</span> <span class="o">=</span> <span class="nv">$_REQUEST</span><span class="p">[</span><span class="s1">'OutTransID'</span><span class="p">];</span>  <span class="c1">//Transaction ID for this fax
+</span><span class="nv">$accountid</span> <span class="o">=</span> <span class="nv">$_REQUEST</span><span class="p">[</span><span class="s1">'AccountID'</span><span class="p">];</span>          <span class="c1">//Account Number used for this request
+</span><span class="nv">$receivedfrom</span> <span class="o">=</span> <span class="nv">$_REQUEST</span><span class="p">[</span><span class="s1">'From'</span><span class="p">];</span>            <span class="c1">//Fax Fr Header
+</span><span class="nv">$receivedto</span> <span class="o">=</span> <span class="nv">$_REQUEST</span><span class="p">[</span><span class="s1">'To'</span><span class="p">];</span>                <span class="c1">//Fax To Header
+</span><span class="nv">$pages</span> <span class="o">=</span> <span class="nv">$_REQUEST</span><span class="p">[</span><span class="s1">'PagesSent'</span><span class="p">];</span>              <span class="c1">//Number of pages sent
+</span><span class="nv">$callduration</span> <span class="o">=</span> <span class="nv">$_REQUEST</span><span class="p">[</span><span class="s1">'CallDuration'</span><span class="p">];</span>    <span class="c1">//Total transmission time of fax in seconds
+</span><span class="nv">$status</span> <span class="o">=</span> <span class="nv">$_REQUEST</span><span class="p">[</span><span class="s1">'LastStatus'</span><span class="p">];</span>            <span class="c1">//Deliver status code of the fax
+</span><span class="nv">$cost</span> <span class="o">=</span> <span class="nv">$_REQUEST</span><span class="p">[</span><span class="s1">'RealCost'</span><span class="p">];</span>                <span class="c1">//Cost for this fax
+</span>
+<span class="nb">print_r</span><span class="p">(</span><span class="nb">json_encode</span><span class="p">(</span><span class="nv">$_REQUEST</span><span class="p">));</span>  <span class="c1">//prints JSON formatted response
+</span>
+<span class="cp">?&gt;</span>
+
+</code></pre>
+<p>Configure Webhook postpack is the easiest way to get notified of your fax requests result.</p>
+<h3 id='enable-webhook-postback'>Enable Webhook Postback</h3>
+<ol>
+<li>Login to your portal account</li>
+<li>Select settings</li>
+<li>Enable Post Back for Outbound Faxes</li>
+<li>Provide your public postback </li>
+</ol>
+
+<p>Example:
+<code>https://your-public-url/path-to-script/getPostBack.php</code></p>
+<h2 id='single-fax-outbound-by-date'>Single Fax Outbound By Date</h2><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+
+<span class="nv">$account_id</span> <span class="o">=</span> <span class="nx">your_account_id</span><span class="p">;</span>
+<span class="nv">$apikey</span> <span class="o">=</span> <span class="s1">'your_api_key'</span><span class="p">;</span>
+<span class="nv">$from_date</span> <span class="o">=</span> <span class="s1">'2016-05-27'</span><span class="p">;</span>
+<span class="nv">$to_date</span> <span class="o">=</span> <span class="s1">'2016-05-31'</span><span class="p">;</span>
+<span class="nv">$detailtype</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="nv">$lasthistoryid</span> <span class="o">=</span> <span class="mi">936600</span><span class="p">;</span>
+<span class="nv">$limit</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+
+<span class="nv">$post</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+
+<span class="s1">'AccountID'</span> <span class="o">=&gt;</span> <span class="nv">$account_id</span><span class="p">,</span>
+<span class="s1">'APIKey'</span> <span class="o">=&gt;</span> <span class="nv">$apikey</span><span class="p">,</span>
+<span class="s1">'FromDate'</span> <span class="o">=&gt;</span> <span class="nv">$from_date</span><span class="p">,</span>
+<span class="s1">'ToDate'</span> <span class="o">=&gt;</span>  <span class="nv">$to_date</span><span class="p">,</span>
+<span class="s1">'DetailType'</span> <span class="o">=&gt;</span> <span class="nv">$detailtype</span><span class="p">,</span>
+<span class="s1">'LastHistoryID'</span> <span class="o">=&gt;</span> <span class="nv">$lasthistoryid</span><span class="p">,</span>
+<span class="s1">'Limit'</span> <span class="o">=&gt;</span> <span class="nv">$limit</span>
+
+<span class="p">);</span>
+
+<span class="nv">$ch</span>   <span class="o">=</span> <span class="nb">curl_init</span><span class="p">();</span>
+<span class="nv">$url</span>  <span class="o">=</span> <span class="s1">'https://api.openfax.com/outboundDetailsbyDate.php'</span><span class="p">;</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="nx">CURLOPT_URL</span><span class="p">,</span> <span class="nv">$url</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="nx">CURLOPT_RETURNTRANSFER</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="nx">CURLOPT_POST</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="nx">CURLOPT_POSTFIELDS</span><span class="p">,</span> <span class="nv">$post</span><span class="p">);</span>
+<span class="nv">$data1</span> <span class="o">=</span> <span class="nb">curl_exec</span><span class="p">(</span><span class="nv">$ch</span><span class="p">);</span>
+<span class="nb">print_r</span><span class="p">(</span><span class="nv">$data1</span><span class="p">);</span>
+
+<span class="cp">?&gt;</span>
+</code></pre>
 <blockquote>
 <p>To authorize, use this code:</p>
 </blockquote>
@@ -445,35 +998,35 @@ Remember — a happy kitten is an authenticated kitten!
 </thead><tbody>
 <tr>
 <td>400</td>
-<td>Bad Request -- Your request sucks</td>
+<td>Bad Request -- Your request sucks.</td>
 </tr>
 <tr>
 <td>401</td>
-<td>Unauthorized -- Your API key is wrong</td>
+<td>Unauthorized -- Your API key is wrong.</td>
 </tr>
 <tr>
 <td>403</td>
-<td>Forbidden -- The kitten requested is hidden for administrators only</td>
+<td>Forbidden -- The kitten requested is hidden for administrators only.</td>
 </tr>
 <tr>
 <td>404</td>
-<td>Not Found -- The specified kitten could not be found</td>
+<td>Not Found -- The specified kitten could not be found.</td>
 </tr>
 <tr>
 <td>405</td>
-<td>Method Not Allowed -- You tried to access a kitten with an invalid method</td>
+<td>Method Not Allowed -- You tried to access a kitten with an invalid method.</td>
 </tr>
 <tr>
 <td>406</td>
-<td>Not Acceptable -- You requested a format that isn&#39;t json</td>
+<td>Not Acceptable -- You requested a format that isn&#39;t json.</td>
 </tr>
 <tr>
 <td>410</td>
-<td>Gone -- The kitten requested has been removed from our servers</td>
+<td>Gone -- The kitten requested has been removed from our servers.</td>
 </tr>
 <tr>
 <td>418</td>
-<td>I&#39;m a teapot</td>
+<td>I&#39;m a teapot.</td>
 </tr>
 <tr>
 <td>429</td>
@@ -492,10 +1045,7 @@ Remember — a happy kitten is an authenticated kitten!
       </div>
       <div class="dark-box">
           <div class="lang-selector">
-                <a href="#" data-language-name="shell">shell</a>
-                <a href="#" data-language-name="ruby">ruby</a>
-                <a href="#" data-language-name="python">python</a>
-                <a href="#" data-language-name="javascript">javascript</a>
+                <a href="#" data-language-name="PHP">PHP</a>
           </div>
       </div>
     </div>

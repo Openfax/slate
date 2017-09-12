@@ -180,6 +180,8 @@ InvalidPriority | Specified Priority value is invalid.  <br/> Values are case se
 ## Acccount Balance
 
 ```php
+// Get your real-time account balance
+
 <?php
 
 $account_id = your_account_id;

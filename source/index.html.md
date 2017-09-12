@@ -180,6 +180,7 @@ InvalidPriority | Specified Priority value is invalid.  <br/> Values are case se
 ## Acccount Balance
 
 ```php
+
 // Get your real-time account balance
 
 <?php
@@ -191,7 +192,7 @@ $post = array(
 'AccountID' => $account_id,
 'APIKey' => $apikey
 
-);
+);s
 
 $ch   = curl_init();
 $url  = 'https://api.openfax.com/getAvailableCredit.php';

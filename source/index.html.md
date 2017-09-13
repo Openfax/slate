@@ -22,7 +22,7 @@ The Openfax Cloud Fax API is designed to allow developers quick and easy access 
 * Send a single fax document to many locations (fax broadcast)
 * Send a customized fax document to many locations based on a Microsoft DOCx template (mail merge broadcast)
 * Configure inbound fax numbers
-* Receive a fax to your cloud storage, website or url post back
+* Receive a fax to your email, cloud storage on AWS S3, or webhook postback
 
 ##Account & API Key
 
@@ -37,7 +37,7 @@ Once you have an established account you will be able to login to the [portal](h
 <aside class="notice">
 Contact us after you have completed your registration for free developer trial account credits.
 </aside>
-## Ways to get help
+## Getting Help
 1. By Phone at 1-866-OPENFAX(673-6329) or +1.847.221.1979
 2. Chat at [openfax.com](https://openfax.com/)
 3. Email [broadcast@openfax.com](mailto:broadcast@openfax.com)
@@ -207,7 +207,9 @@ print_r($data1);
 ```
 
 Get your real-time account credit balance.
+
 HTTPS POST:
+
 `https://api.openfax.com/getAvailableCredit.php`
 ### Submission Parameters
 
@@ -329,7 +331,20 @@ print_r($data1);
 
 ?>
 ```
+<aside class="warning">
+It is not recommended to use this method to obtain real-time data for the current day's fax usage. 
+</aside>
 
+<aside class="success">
+Use this method for historical reporting or auditing.  
+</aside>
+It is suggested to use Single Fax Webhook Post Back for real time call reporting. This method provides the ability to retrieve all single transacational fax requests for your account.
+
+###Types of Reporting
+
+**Summary**: Returns only the last and finalized call record for each transaction.
+
+**Detail**: Returns all attempts for each fax request in detail.
 > To authorize, use this code:
 
 ```ruby

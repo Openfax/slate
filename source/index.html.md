@@ -18,11 +18,11 @@ search: true
 
 The Openfax Cloud Fax API is designed to allow developers quick and easy access to global facsimile services.  With Openfax's fax APIs you can:
 
-* Send a single fax document to a single location
-* Send a single fax document to many locations (fax broadcast)
-* Send a customized fax document to many locations based on a Microsoft DOCx template (mail merge broadcast)
-* Configure inbound fax numbers
-* Receive a fax to your email, cloud storage on AWS S3, or webhook postback
+* Send a single fax document to a single location.
+* Send a single fax document to many locations (fax broadcast).
+* Send a customized fax document to many locations based on a Microsoft DOCx template (mail merge broadcast).
+* Configure inbound fax numbers.
+* Receive a fax to your email, cloud storage on AWS S3, or webhook postback.
 
 ##Account & API Key
 
@@ -35,7 +35,7 @@ The Openfax Cloud Fax API is designed to allow developers quick and easy access 
 Once you have an established account you will be able to login to the [portal](https://portal.openfax.com/) to obtain your API key from your account settings.
 
 <aside class="notice">
-Contact us after you have completed your registration for free developer trial account credits.
+Contact us after you have completed your registration for free developer trial credits.
 </aside>
 ## Getting Help
 1. By Phone at 1-866-OPENFAX(673-6329) or +1.847.221.1979
@@ -63,7 +63,7 @@ $pdf = "/home/docs/mydoc.pdf";     // Fax Document PDF location
 $pdf_encode = base64_encode(file_get_contents($pdf));
 
 $account_id = ‘#######’;           // Your Account ID
-$apikey = 'Your API Key';          //API Key for the Account ID
+$apikey = 'Your API Key';          // API Key for your Account ID
 
 $faxnum = '15555551212’;           // Destination Fax Number US & Canada Dialing Only
 $to_header = 'My Customer';        // Fax To Header Value
@@ -105,8 +105,8 @@ $data1 = curl_exec($ch);
 print_r($data1);
 ?>
 ``` 
-###HTTPS Request
-`POST: https://api.openfax.com/faxSendSubmit.php`
+###HTTPS POST:
+`https://api.openfax.com/faxSendSubmit.php`
 
 Sending a single fax allows you to provide one fax number and one pdf file for transmission. Openfax will attempt to deliver the fax conducting up to 3 redial attempts with a 4-minute wait duration between each redial.
 
@@ -208,8 +208,7 @@ print_r($data1);
 
 Get your real-time account credit balance.
 
-HTTPS POST:
-
+###HTTPS GET:
 `https://api.openfax.com/getAvailableCredit.php`
 ### Submission Parameters
 
@@ -227,6 +226,7 @@ Name | Type | Desc
 -------------- | -------------- | -------------- 
 AccountBalance | BigInt | Account Balance |
 
+*A positive number reflects available credit in your account.*
 ## Status Codes
 ### LastStatus
 The last status code is provided for the latest result of the fax attempt.  If the report detail is recieved by webhook postback then the transaction is finalized.  When requesting real-time report data the transaction may still have available redials.  The LastStatus is the result for the individal HistortOutTransID associated to the OutTransID fax request.
@@ -298,15 +298,16 @@ Example:
 
 ##Single Fax Outbound By Date
 ```php
+// Gets Single Fax Outbound Activty by Date
 <?php
 
-$account_id = your_account_id;
-$apikey = 'your_api_key';
-$from_date = '2016-05-27';
-$to_date = '2016-05-31';
-$detailtype = 1;
-$lasthistoryid = 936600;
-$limit = 5;
+$account_id = your_account_id;      // Your Account ID
+$apikey = 'your_api_key';           // API Key for your Account ID
+$from_date = '2016-05-27';          // Start date in YYYY-MM-DD
+$to_date = '2016-05-31';            // End date in YYYY-MM-DD
+$detailtype = 1;                    // 0 for summary (finalized only), 1 for all attempts
+$lasthistoryid = 936600;            // Optional starting history ID, returns 9366001+
+$limit = 5;                         // Max number of rows returned, max 1,0000
 
 $post = array(
 
@@ -331,47 +332,32 @@ print_r($data1);
 
 ?>
 ```
-<aside class="warning">
-It is not recommended to use this method to obtain real-time data for the current day's fax usage. 
-</aside>
 
-<aside class="success">
-Use this method for historical reporting or auditing.  
-</aside>
-It is suggested to use Single Fax Webhook Post Back for real time call reporting. This method provides the ability to retrieve all single transacational fax requests for your account.
+###HTTPS GET:
+`https://api.openfax.com/outboundDetailsbyDate.php`
+
+It is suggested to use Single Fax Webhook Postback for tracking or billing of fax activity. This method provides the ability to retrieve all single transacational fax requests for your account in a summary or all attempt format. 
 
 ###Types of Reporting
 
 **Summary**: Returns only the last and finalized call record for each transaction.
 
 **Detail**: Returns all attempts for each fax request in detail.
-> To authorize, use this code:
 
-```ruby
-require 'kittn'
+##Submission Parameters
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
+Name | Type | Len | Desc | Example
+-------------- | -------------- | --------------  | --------------  | --------------
+**AccountID** | Int | 9 | Openfax Account ID | 123456789
+**APIKey** | VarChar | 255 | Set in portal account settings | IEYRtw2cd8aGa54
+**FromDate** | Date | 10 | Start date YYYY-MM-DD | 2017-05-27
+**ToDate** | Date | 10 | End date YYYY-MM-DD | 2017-05-31
+**DetailType** | Int | 1 |0 Finalized Only, 1 Full Report | 0
+**DetailType** | Int | 1 |0 Finalized Only, 1 Full Report | 0
 
-```python
-import kittn
 
-api = kittn.authorize('meowmeowmeow')
-```
 
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
 
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-```
-
-> Make sure to replace `meowmeowmeow` with your API key.
 
 Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
 

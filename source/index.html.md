@@ -503,7 +503,7 @@ api.kittens.delete(2)
 ```python
 import kittn
 
-api = kittn.authorize('meowmeowmeow')
+api = kittn.authorize('meowmeoswmeow')
 api.kittens.delete(2)
 ```
 
@@ -521,7 +521,7 @@ let max = api.kittens.delete(2);
 ```
 
 > The above command returns JSON structured like this:
-
+s
 ```json
 {
   "id": 2,

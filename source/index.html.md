@@ -331,9 +331,9 @@ $data1 = curl_exec($ch);
 print_r($data1);
 
 ?>
-``1
+```
 
-### HTTPS GET:
+###HTTPS GET:
 `https://api.openfax.com/outboundDetailsbyDate.php`
 
 It is suggested to use Single Fax Webhook Postback for tracking or billing of fax activity. This method provides the ability to retrieve all single transacational fax requests for your account in a summary or all attempt format. 

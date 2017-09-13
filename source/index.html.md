@@ -305,7 +305,7 @@ $account_id = your_account_id;      // Your Account ID
 $apikey = 'your_api_key';           // API Key for your Account ID
 $from_date = '2016-05-27';          // Start date in YYYY-MM-DD
 $to_date = '2016-05-31';            // End date in YYYY-MM-DD
-$detailtype = 1;                    // 0 for summary (finalized only), 1 for all attempts
+$detailtype = 1;                    // 0 for summary (finalized only), 1 for detail (all)
 $lasthistoryid = 936600;            // Optional starting history ID, returns 9366001+
 $limit = 5;                         // Max number of rows returned, max 1,0000
 
@@ -340,9 +340,11 @@ It is suggested to use Single Fax Webhook Postback for tracking or billing of fa
 
 ### Types of Reporting
 
-**Summary** Returns only the last and finalized call record for each transaction.
+* **Summary**<br/>
+Returns only the last and finalized call record for each transaction.
 
-**Detail** Returns all attempts for each fax request in detail.
+* **Detail**<br/>
+Returns all attempts for each fax request in detail.
 
 ### Submission Parameters
 
@@ -352,8 +354,8 @@ Name | Type | Len | Desc | Example
 **APIKey** | VarChar | 255 | Set in portal account settings | IEYRtw2cd8aGa54
 **FromDate** | Date | 10 | Start date YYYY-MM-DD | 2017-05-27
 **ToDate** | Date | 10 | End date YYYY-MM-DD | 2017-05-31
-**DetailType** | Int | 1 |0 Finalized Only, 1 Full Report | 0
-**DetailType** | Int | 1 |0 Finalized Only, 1 Full Report | 0
+**DetailType** | Int | 1 |0 Summary Only, 1 Detail Report | 0
+**DetailType** | Int | 1 |0 Summary Only, 1 Full Report | 0
 
 
 

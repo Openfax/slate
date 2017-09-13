@@ -162,7 +162,7 @@ You must use the proper paper size for your fax destination's country. Using an 
 ### Response Parameters
 Reponse |  Condition 
 -------------- | --------------
-**Success** | Returns the OutTransID for the submitted outbound fax transaction.
+Success | Returns the OutTransID for the submitted outbound fax transaction.
 Failed | The Transaction request has failed.
 InvalidAuthentication |  The account number or API key provided is invalid.
 AccountInactive |  The account has been depleted of funds or has been deactivated. Check balance, apply payment or contact support.
@@ -227,8 +227,8 @@ Name | Type | Desc
 AccountBalance | BigInt | Account Balance |
 
 *A positive number reflects available credit in your account.*
-## Status Codes
-### LastStatus
+##Status Codes
+###LastStatus
 The last status code is provided for the latest result of the fax attempt.  If the report detail is recieved by webhook postback then the transaction is finalized.  When requesting real-time report data the transaction may still have available redials.  The LastStatus is the result for the individal HistortOutTransID associated to the OutTransID fax request.
 
 Code |  Description | Redial | Explaination 
@@ -245,7 +245,7 @@ Code |  Description | Redial | Explaination
 8 | Doc Conversion Failed | No | The document could not be converted.
 9 | Credit Check Failed | No | There is insufficient credit to process the fax.
 
-### CurrentState
+###Current State
 Code |  Description 
 -------------- | -------------- 
 0 | Received
@@ -355,11 +355,26 @@ Name | Type | Len | Desc | Example
 **FromDate** | Date | 10 | Start date YYYY-MM-DD | 2017-05-27
 **ToDate** | Date | 10 | End date YYYY-MM-DD | 2017-05-31
 **DetailType** | Int | 1 |0 Summary Only, 1 Detail Report | 0
-**DetailType** | Int | 1 |0 Summary Only, 1 Full Report | 0
 
 
+### Response Parameters
 
-
+Name | Type | Len | Desc | Example
+-------------- | -------------- | --------------  | --------------  | --------------
+HistoryOutboundFaxID | BigInt | 255 | Sequential call record ID | 921363
+**OutTransID** | BigInt | 255 | Unique fax request ID | 779029
+**AccountID** | Int | 9 | Openfax Account ID | 123456789
+FaxNumber | BigInt | 20 | Destination fax number | 15555551212
+CurrentState | Int | 11 | Current status of processing | [Status Codes](#current-state)
+CallerID | BigInt | 20 | Outbound Caller ID used with transacation | 17205721703
+MaxAttempts | Int | 1 | Maximum number of redial attempts allowed | 3
+RetryCount | Int | 1 | Sequence number of this call of MaxAttempts | 1
+ToHeader | VarChar | 15 | Text provided for the fax To Header | Jones Smith
+FromHeader | VarChar | 15 | Text provided for the fax Fr Header | Mike T.
+FaxResolution | Int | 1 | Document rendered in 0 - standard or 1 - fine  | 0
+RenderStatus | Int | 1 | Render status 0 - pending, 1 - complete, 2 - failed | 1
+FaxDocURL | VarChar | 255 | Tiff image location | /transoutboundfax/57b8d334a117d167e8370.pdf
+PageCount | Int| 4 | Number of pages in the fax document | 2
 
 Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
 

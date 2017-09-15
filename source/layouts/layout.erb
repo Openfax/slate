@@ -92,15 +92,20 @@ under the License.
             <li><%= footer %></li>
           <% end %>
 <li>
-<script type="text/javascript" src="https://cdn.statuspage.io/se-v2.js"></script>
+
 <script>
-  var sp = new StatusPage.page({ page : '753mfgjdhqvf' });
-  sp.status({
-    success : function(data) {
-      console.log(data.status.indicator);
-    }
-  });
-</script></li>
+var sp = new StatusPage.page({ page: '39qnmk3k9q7f'});
+
+sp.summary({
+  success: function(data) {
+    // adds the text description to the dropdown
+    $('.color-description').text(data.status.description);
+    // appends the status indicator as a class name so we can use the right color for the status light thing
+    $('.color-dot').addClass(data.status.indicator);
+  }
+});
+</script>
+</li>
 
         </ul>
 

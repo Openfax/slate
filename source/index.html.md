@@ -8,8 +8,7 @@ toc_footers:
   - <a href='https://openfax.com/signup'>Sign Up for an Account</a>
   - <a href='https://portal.openfax.com'>Portal Login</a>
 
-includes:
-  - errors
+
 
 search: true
 ---
@@ -46,10 +45,6 @@ Contact us after you have completed your registration for free developer trial c
 
 # Sending Faxes
 
-Overview
-
-Rates
-Funding
 
 ##Send a Single Fax
 ```php
@@ -171,9 +166,6 @@ InvalidFaxNumberLength | The FaxNumber is not valid for dialing.   <br/>North Am
 InvalidFaxResolution | Specified faxResolution value is invalid. <br/>Value must be 0 for standard or 1 for fine resolution.
 InvalidPaperSize | Specified paperSize value is invalid.   <br/>Value must be 0 - US Letter, 1 - US Legal  or 2 - A4
 InvalidPriority | Specified Priority value is invalid.  <br/> Values are case sensitive, *Normal* or *Low*.
-##Send a Standard Broadcast
-##Send a Mail Merge Broadcast
-##International Dialing
 
 
 # Fax Status & Reporting

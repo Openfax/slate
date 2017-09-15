@@ -14,6 +14,8 @@ search: true
 ---
 
 # Getting Started
+** THIS DOCUMENTATION IS STILL BEING UPDATED DAILY AS WE DEPLOY THIS NEW REFERENECE **
+*CHECK BACK OFTEN*
 
 The Openfax Cloud Fax API is designed to allow developers quick and easy access to global facsimile services.  With Openfax's fax APIs you can:
 

@@ -25,11 +25,11 @@ The Openfax Cloud Fax API is designed to allow developers quick and easy access 
 
 ##Account & API Key
 
-**To get Started** you'll need to [sign-up for an account](https://openfax.com/signup).
+**To get Started** you'll need to [sign-up for an account](https://openfax.com/signup)
 
-* An account is required to use the API.
-* An account number is required to use the API.
-* An API key is required to use the API.
+* An account is required to use the API
+* An account number is required to use the API
+* An API key is required to use the API
 
 Once you have an established account you will be able to login to the [portal](https://portal.openfax.com/) to obtain your API key from your account settings.
 

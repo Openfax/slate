@@ -25,11 +25,11 @@ The Openfax Cloud Fax API is designed to allow developers quick and easy access 
 
 ##Account & API Key
 
-**To get Started** you'll need to [sign-up for an account](https://openfax.com/signup)
+**To get Started** you'll need to [sign-up for an account](https://openfax.com/signup).
 
-* An account is required to use the API
-* An account number is required to use the API
-* An API key is required to use the API
+* An account is required to use the API.
+* An account number is required to use the API.
+* An API key is required to use the API.
 
 Once you have an established account you will be able to login to the [portal](https://portal.openfax.com/) to obtain your API key from your account settings.
 
@@ -166,6 +166,7 @@ InvalidFaxNumberLength | The FaxNumber is not valid for dialing.   <br/>North Am
 InvalidFaxResolution | Specified faxResolution value is invalid. <br/>Value must be 0 for standard or 1 for fine resolution.
 InvalidPaperSize | Specified paperSize value is invalid.   <br/>Value must be 0 - US Letter, 1 - US Legal  or 2 - A4
 InvalidPriority | Specified Priority value is invalid.  <br/> Values are case sensitive, *Normal* or *Low*.
+
 
 
 # Fax Status & Reporting

@@ -371,12 +371,12 @@ MaxAttempts | Int | 1 | Maximum number of redial attempts allowed | 3
 RetryCount | Int | 1 | Sequence number of this call of MaxAttempts | 1
 ToHeader | VarChar | 15 | Text provided for the fax To Header | Jones Smith
 FromHeader | VarChar | 15 | Text provided for the fax Fr Header | Mike T.
-FaxResolution | Int | 1 | Document rendered in 0 - standard or 1 - fine  | 0
-RenderStatus | Int | 1 | Render status 0 - pending, 1 - complete, 2 - failed | 1
-FaxDocURL | VarChar | 255 | Tiff image location | /transoutboundfax/57b8d334a117d167e8370.pdf
+FaxResolution | Int | 1 | Document resolution: <br/> 0 - Standard <br/> 1 - Fine  | 0
+RenderStatus | Int | 1 | Render status:<br/<> 0 - Pending<br/> 1 - Complete <br/> 2 - Failed | 1
+FaxDocURL | VarChar | 255 | Tiff image location | file.tif
 PageCount | Int| 4 | Number of pages in the fax document | 2
+PaperSize | Int | 1 | Specifies input PDF paper size: <br/> 0 - US Letter (8.5 x 11.0 in / 216 x 279 mm) </br>1 - US Legal (8.5 x 14.0 in /216 x 356 mm) <br/> 2 - A4 (8.5 x 11.0 in / 216 x 279 mm) | 0
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
 
 Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
 
